@@ -4,7 +4,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMob;
 import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
+import org.bukkit.entity.Mob;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
@@ -181,6 +183,12 @@ class NMS_1_18_R2 extends NMS {
             return tag.getUUID(key);
         }
         return null;
+    }
+    
+    @Override
+    public void removePathfinderGoals(Mob mob) {
+        net.minecraft.world.entity.Mob nmsMob = ((CraftMob) mob).getHandle();
+        nmsMob.goalSelector.removeAllGoals();
     }
     
     @Override

@@ -1,5 +1,6 @@
 package com.starmediadev.nmswrapper;
 
+import org.bukkit.entity.Mob;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
@@ -27,6 +28,7 @@ public abstract class NMS {
     public abstract boolean getNBTBoolean(ItemStack itemStack, String key);
     public abstract ItemStack addNBTUuid(ItemStack itemStack, String key, UUID value);
     public abstract UUID getNBTUuid(ItemStack itemStack, String key);
+    public abstract void removePathfinderGoals(Mob mob);
 
     public enum Version {
         MC_1_18_R2
