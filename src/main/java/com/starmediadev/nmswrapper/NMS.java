@@ -5,6 +5,13 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
+/**
+ * Abstract class for interacting with this API
+ * 
+ * Must be instantiated with the NMS.getNMS() static method while providing the Version 
+ * 
+ * The methods should be pretty self explanitory
+ */
 public abstract class NMS {
     
     public abstract double[] getRecentTPS();
