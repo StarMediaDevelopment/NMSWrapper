@@ -3,11 +3,13 @@ package com.starmediadev.nmswrapper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import org.bukkit.Bukkit;
+import org.bukkit.command.*;
 import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMob;
 import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Mob;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.UUID;
 
@@ -182,6 +184,7 @@ class NMS_1_18_R2 extends NMS {
         if (tag != null) {
             return tag.getUUID(key);
         }
+        
         return null;
     }
     
@@ -189,6 +192,13 @@ class NMS_1_18_R2 extends NMS {
     public void removePathfinderGoals(Mob mob) {
         net.minecraft.world.entity.Mob nmsMob = ((CraftMob) mob).getHandle();
         nmsMob.goalSelector.removeAllGoals();
+    }
+    
+    @Override
+    public void registerCommand(JavaPlugin plugin, Command command) {
+        CraftServer craftServer = (CraftServer) Bukkit.getServer();
+        SimpleCommandMap commandMap = craftServer.getCommandMap();
+        commandMap.register(plugin.getName(), command);
     }
     
     @Override
